@@ -13,13 +13,17 @@ export async function echoallCommand(
   command: string | URL,
   options?: Omit<Deno.CommandOptions, "stdin" | "stderr" | "stdout">,
 ) {
-  const { stdout, wait } = echoerrCommand(denops, command, options);
+  const { pipeOut, waitErr, finalize } = echoerrCommand(
+    denops,
+    command,
+    options,
+  );
   const stdoutStream = new EchomsgStream(denops);
   await Promise.all([
-    wait,
-    stdout.pipeThrough(new TextLineStream()).pipeTo(stdoutStream),
+    waitErr,
+    pipeOut.pipeThrough(new TextLineStream()).pipeTo(stdoutStream),
   ]);
-  await stdoutStream.finalize(denops);
+  await finalize();
 }
 
 /**
@@ -34,23 +38,28 @@ export function echoerrCommand(
   command: string | URL,
   options?: Omit<Deno.CommandOptions, "stdin" | "stderr" | "stdout">,
 ) {
-  const { status, stderr, stdout } = new Deno.Command(command, {
+  const { stderr, stdout } = new Deno.Command(command, {
     ...options,
     stdin: "null",
     stderr: "piped",
     stdout: "piped",
   }).spawn();
-  const stderrStream = new EchomsgStream(denops, "ErrorMsg");
+
+  const errorMsgStream = new EchomsgStream(denops, "ErrorMsg");
+
+  const waitErr = (async () => {
+    await stderr
+      .pipeThrough(new TextDecoderStream())
+      .pipeThrough(new TextLineStream())
+      .pipeTo(errorMsgStream);
+  })();
 
   return {
-    stdout: stdout.pipeThrough(new TextDecoderStream()),
-    wait: status.then((stat) => {
-      if (!stat.success) {
-        stderr
-          .pipeThrough(new TextDecoderStream())
-          .pipeThrough(new TextLineStream())
-          .pipeTo(stderrStream);
-      }
-    }).then(() => stderrStream.finalize(denops)),
+    pipeOut: stdout.pipeThrough(new TextDecoderStream()),
+    finalize: async () => {
+      await stdout.cancel();
+      await stderr.cancel();
+    },
+    waitErr,
   };
 }
