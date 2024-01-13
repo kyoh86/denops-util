@@ -1,4 +1,4 @@
-import type { Denops } from "https://deno.land/x/ddu_vim@v3.9.0/deps.ts";
+import type { Denops } from "https://deno.land/x/denops_std@v5.2.0/mod.ts";
 import { setreg } from "https://deno.land/x/denops_std@v5.2.0/function/mod.ts";
 import { v } from "https://deno.land/x/denops_std@v5.2.0/variable/mod.ts";
 

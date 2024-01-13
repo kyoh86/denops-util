@@ -1,4 +1,4 @@
-import type { Denops } from "https://deno.land/x/ddu_vim@v3.9.0/deps.ts";
+import type { Denops } from "https://deno.land/x/denops_std@v5.2.0/mod.ts";
 import { echo } from "https://deno.land/x/denops_std@v5.2.0/helper/mod.ts";
 import { echomsg } from "./echomsg.ts";
 
