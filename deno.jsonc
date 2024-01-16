@@ -1,8 +1,8 @@
 {
   "name": "denops-util",
-  "version": "0.0.1",
   "description": "A set of denops utils just for me",
   "tasks": {
-    "dev": "deno run --watch main.ts"
+    "test": "deno test --allow-env=DENOPS_TEST_DENOPS_PATH,DENOPS_TEST_VERBOSE,DENOPS_TEST_VIM_EXECUTABLE,DENOPS_TEST_NVIM_EXECUTABLE --allow-run=vim,nvim,echo,bash --allow-net=127.0.0.1:0 --allow-read",
+    "lint": "deno lint ./**/*.ts"
   }
 }

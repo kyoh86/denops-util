@@ -6,7 +6,8 @@ on:
       - main
     paths:
       - '**.ts'
-      - .github/workflows/deno-test.yml
+      - '.github/workflows/deno-test.yml'
+      - 'deno.jsonc'
   pull_request:
     branches:
       - main
@@ -33,7 +34,7 @@ jobs:
         run: deno fmt --check
 
       - name: Run linter
-        run: deno lint
+        run: deno task lint
 
       - name: Get Denops
         run: |
@@ -57,4 +58,4 @@ jobs:
           echo "DENOPS_TEST_NVIM_EXECUTABLE=${{ steps.nvim.outputs.executable }}" >> "$GITHUB_ENV"
 
       - name: Run tests
-        run: deno test --allow-all --allow-none
+        run: deno task test
