@@ -1,5 +1,5 @@
-import type { Denops } from "https://deno.land/x/denops_std@v5.2.0/mod.ts";
-import { echo } from "https://deno.land/x/denops_std@v5.2.0/helper/mod.ts";
+import type { Denops } from "https://deno.land/x/denops_std@v5.3.0/mod.ts";
+import { echo } from "https://deno.land/x/denops_std@v5.3.0/helper/mod.ts";
 import { echomsg } from "./echomsg.ts";
 
 export class EchomsgStream extends WritableStream<string> {
