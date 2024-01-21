@@ -1,9 +1,9 @@
-import type { Denops } from "https://deno.land/x/denops_std@v5.2.0/mod.ts";
-import { batch } from "https://deno.land/x/denops_std@v5.2.0/batch/mod.ts";
+import type { Denops } from "https://deno.land/x/denops_std@v5.3.0/mod.ts";
+import { batch } from "https://deno.land/x/denops_std@v5.3.0/batch/mod.ts";
 import {
   getreginfo,
   setreg,
-} from "https://deno.land/x/denops_std@v5.2.0/function/mod.ts";
+} from "https://deno.land/x/denops_std@v5.3.0/function/mod.ts";
 
 /**
  * Put text to the current cursor position.
