@@ -13,14 +13,14 @@ export async function echoallCommand(
   command: string | URL,
   options?: Omit<Deno.CommandOptions, "stdin" | "stderr" | "stdout">,
 ) {
-  const { pipeOut, waitErr, finalize } = echoerrCommand(
+  const { pipeOut, wait, finalize } = echoerrCommand(
     denops,
     command,
     options,
   );
   const stdoutStream = new EchomsgStream(denops);
   await Promise.all([
-    waitErr,
+    wait,
     pipeOut.pipeThrough(new TextLineStream()).pipeTo(stdoutStream),
   ]);
   await finalize();
@@ -38,7 +38,7 @@ export function echoerrCommand(
   command: string | URL,
   options?: Omit<Deno.CommandOptions, "stdin" | "stderr" | "stdout">,
 ) {
-  const { stderr, stdout } = new Deno.Command(command, {
+  const { status, stderr, stdout } = new Deno.Command(command, {
     ...options,
     stdin: "null",
     stderr: "piped",
@@ -47,11 +47,14 @@ export function echoerrCommand(
 
   const errorMsgStream = new EchomsgStream(denops, "ErrorMsg");
 
-  const waitErr = (async () => {
-    await stderr
-      .pipeThrough(new TextDecoderStream())
-      .pipeThrough(new TextLineStream())
-      .pipeTo(errorMsgStream);
+  const wait = (async () => {
+    await Promise.all([
+      stderr
+        .pipeThrough(new TextDecoderStream())
+        .pipeThrough(new TextLineStream())
+        .pipeTo(errorMsgStream),
+      status,
+    ]);
   })();
 
   return {
@@ -60,6 +63,6 @@ export function echoerrCommand(
       await stdout.cancel();
       await stderr.cancel();
     },
-    waitErr,
+    wait,
   };
 }
