@@ -48,13 +48,14 @@ export function echoerrCommand(
   const errorMsgStream = new EchomsgStream(denops, "ErrorMsg");
 
   const wait = (async () => {
-    await Promise.all([
+    const [_, s] = await Promise.all([
       stderr
         .pipeThrough(new TextDecoderStream())
         .pipeThrough(new TextLineStream())
         .pipeTo(errorMsgStream),
       status,
     ]);
+    return s;
   })();
 
   return {
