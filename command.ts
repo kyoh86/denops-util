@@ -1,5 +1,5 @@
 import type { Denops } from "https://deno.land/x/denops_std@v6.4.0/mod.ts";
-import { TextLineStream } from "https://deno.land/std@0.221.0/streams/text_line_stream.ts";
+import { TextLineStream } from "https://deno.land/std@0.222.1/streams/text_line_stream.ts";
 import { EchomsgStream } from "./echomsg_stream.ts";
 
 /**
