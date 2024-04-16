@@ -69,14 +69,14 @@ async function getNeighboringChars(
   if (after) {
     // When pasting after the cursor
     return [
-      colNum < lineText.length ? lineText[colNum - 1] : "", // charBefore
+      colNum <= lineText.length ? lineText[colNum - 1] : "", // charBefore
       colNum < lineText.length - 1 ? lineText[colNum] : "", // charAfter
     ];
   } else {
     // When pasting before the cursor
     return [
       colNum > 1 ? lineText[colNum - 2] : "", // charBefore
-      colNum > 1 ? lineText[colNum - 1] : "", // charAfter
+      colNum >= 1 ? lineText[colNum - 1] : "", // charAfter
     ];
   }
 }
