@@ -119,7 +119,6 @@ export async function putWithSpacing(
       textToPaste += " ";
     }
   }
-  console.log(`"${charBefore}" "${charAfter}" "${pattern}" "${textToPaste}"`);
 
   // Paste the text at the appropriate position
   await setreg(denops, '"', textToPaste, "c");
