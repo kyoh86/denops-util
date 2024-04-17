@@ -3,6 +3,10 @@
   "description": "A set of denops utils just for me",
   "tasks": {
     "test": "deno test --allow-env=DENOPS_TEST_DENOPS_PATH,DENOPS_TEST_VERBOSE,DENOPS_TEST_VIM_EXECUTABLE,DENOPS_TEST_NVIM_EXECUTABLE --allow-run=vim,nvim,echo,bash --allow-net=127.0.0.1:0 --allow-read",
+    "doc:clear": "rm -rf ./docs",
+    "doc:generate": "deno doc --html --name=denops-util --unstable ./**/*.ts",
+    "doc:serve": "python -m http.server -b 0.0.0.0 -d ./docs 8000",
+    "doc": "deno task doc:clear && deno task doc:generate && deno task doc:serve",
     "check": "deno check ./**/*.ts",
     "lint": "deno lint ./**/*.ts"
   }

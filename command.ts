@@ -12,7 +12,7 @@ export async function echoallCommand(
   denops: Denops,
   command: string | URL,
   options?: Omit<Deno.CommandOptions, "stdin" | "stderr" | "stdout">,
-) {
+): Promise<void> {
   const { pipeOut, wait, finalize } = echoerrCommand(
     denops,
     command,
@@ -32,6 +32,18 @@ export async function echoallCommand(
  * @param command Command to execute
  * @param options Options for Deno.Command
  * @returns Object has stdout pipe and wait promise
+ * @example
+ * ```ts
+ * const { pipeOut, wait, finalize } = echoerrCommand(denops, "git", { args: ["status"] });
+ * try {
+ *     for await (const line of pipeOut.pipeThrough(new TextLineStream())) {
+ *         console.log(line);
+ *     }
+ * } finally {
+ *     await wait;
+ *     await finalize();
+ * }
+ * ```
  */
 export function echoerrCommand(
   denops: Denops,
