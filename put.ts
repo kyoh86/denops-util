@@ -1,11 +1,12 @@
 import type { Denops } from "https://deno.land/x/denops_std@v6.4.0/mod.ts";
 import { batch } from "https://deno.land/x/denops_std@v6.4.0/batch/mod.ts";
 import {
-  col,
+  charcol,
   getline,
   getreginfo,
   match,
   setreg,
+  strcharpart,
 } from "https://deno.land/x/denops_std@v6.4.0/function/mod.ts";
 
 /**
@@ -64,19 +65,19 @@ async function getNeighboringChars(
   after: boolean,
 ): Promise<[string, string]> {
   const lineText = await getline(denops, ".");
-  const colNum = await col(denops, ".");
+  const colNum = await charcol(denops, ".");
 
   if (after) {
     // When pasting after the cursor
     return [
-      colNum <= lineText.length ? lineText[colNum - 1] : "", // charBefore
-      colNum < lineText.length - 1 ? lineText[colNum] : "", // charAfter
+      await strcharpart(denops, lineText, colNum - 1, 1), // charBefore
+      await strcharpart(denops, lineText, colNum, 1), // charAfter
     ];
   } else {
     // When pasting before the cursor
     return [
-      colNum > 1 ? lineText[colNum - 2] : "", // charBefore
-      colNum >= 1 ? lineText[colNum - 1] : "", // charAfter
+      colNum > 1 ? await strcharpart(denops, lineText, colNum - 2, 1) : "", // charBefore
+      await strcharpart(denops, lineText, colNum - 1, 1), // charAfter
     ];
   }
 }
