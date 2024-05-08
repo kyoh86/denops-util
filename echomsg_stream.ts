@@ -1,5 +1,5 @@
-import type { Denops } from "https://deno.land/x/denops_std@v6.4.0/mod.ts";
-import { echo } from "https://deno.land/x/denops_std@v6.4.0/helper/mod.ts";
+import type { Denops } from "https://deno.land/x/denops_std@v6.4.2/mod.ts";
+import { echo } from "https://deno.land/x/denops_std@v6.4.2/helper/mod.ts";
 import { echomsg } from "./echomsg.ts";
 
 /**
