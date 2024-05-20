@@ -73,8 +73,12 @@ export function echoerrCommand(
   return {
     pipeOut: stdout.pipeThrough(new TextDecoderStream()),
     finalize: async () => {
-      await stdout.cancel();
-      await stderr.cancel();
+      if (!stdout.locked) {
+        await stdout.cancel();
+      }
+      if (!stderr.locked) {
+        await stderr.cancel();
+      }
     },
     wait,
   };
