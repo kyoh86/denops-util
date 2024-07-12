@@ -1,6 +1,6 @@
 import { assert } from "https://deno.land/std@0.224.0/assert/mod.ts";
 import { test } from "https://deno.land/x/denops_test@v1.8.0/mod.ts";
-import * as fn from "https://deno.land/x/denops_std@v6.5.0/function/mod.ts";
+import * as fn from "https://deno.land/x/denops_std@v6.5.1/function/mod.ts";
 import { echoallCommand } from "./command.ts";
 
 test({
