@@ -1,5 +1,5 @@
-import type { Denops } from "https://deno.land/x/denops_std@v6.5.1/mod.ts";
-import { TextLineStream } from "https://deno.land/std@0.224.0/streams/text_line_stream.ts";
+import type { Denops } from "@denops/std";
+import { TextLineStream } from "@std/streams";
 import { EchomsgStream } from "./echomsg_stream.ts";
 
 /**
@@ -49,7 +49,11 @@ export function echoerrCommand(
   denops: Denops,
   command: string | URL,
   options?: Omit<Deno.CommandOptions, "stdin" | "stderr" | "stdout">,
-) {
+): {
+  pipeOut: ReadableStream<string>;
+  finalize: () => Promise<void>;
+  wait: Promise<Deno.CommandStatus>;
+} {
   const { status, stderr, stdout } = new Deno.Command(command, {
     ...options,
     stdin: "null",

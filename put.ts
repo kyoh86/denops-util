@@ -1,5 +1,5 @@
-import type { Denops } from "https://deno.land/x/denops_std@v6.5.1/mod.ts";
-import { batch } from "https://deno.land/x/denops_std@v6.5.1/batch/mod.ts";
+import type { Denops } from "@denops/std";
+import { batch } from "@denops/std/batch";
 import {
   charcol,
   getline,
@@ -7,7 +7,7 @@ import {
   match,
   setreg,
   strcharpart,
-} from "https://deno.land/x/denops_std@v6.5.1/function/mod.ts";
+} from "@denops/std/function";
 
 /**
  * Put text to the current cursor position.

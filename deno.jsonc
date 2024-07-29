@@ -1,6 +1,14 @@
 {
-  "name": "denops-util",
+  "name": "@kyoh86/denops-util",
+  "version": "0.1.0",
   "description": "A set of denops utils just for me",
+  "exports": {
+    "./command": "./command.ts",
+    "./echomsg": "./echomsg.ts",
+    "./echomsg_stream": "./echomsg_stream.ts",
+    "./put": "./put.ts",
+    "./yank": "./yank.ts"
+  },
   "tasks": {
     "doc:clear": "rm -rf ./docs",
     "doc:generate": "deno doc --html --name=denops-util --unstable ./**/*.ts",
@@ -9,5 +17,11 @@
     "test": "deno test --allow-env=DENOPS_TEST_CONNECT_TIMEOUT,DENOPS_TEST_DENOPS_PATH,DENOPS_TEST_VERBOSE,DENOPS_TEST_VIM_EXECUTABLE,DENOPS_TEST_NVIM_EXECUTABLE --allow-run=vim,nvim,echo,bash --allow-net=127.0.0.1:0 --allow-read",
     "check": "deno check ./**/*.ts",
     "lint": "deno lint ./**/*.ts"
+  },
+  "imports": {
+    "@denops/std": "jsr:@denops/std@^7.0.0",
+    "@denops/test": "jsr:@denops/test@^3.0.1",
+    "@std/assert": "jsr:@std/assert@^1.0.1",
+    "@std/streams": "jsr:@std/streams@^1.0.0"
   }
 }

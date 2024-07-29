@@ -1,6 +1,6 @@
-import type { Denops } from "https://deno.land/x/denops_std@v6.5.1/mod.ts";
-import { setreg } from "https://deno.land/x/denops_std@v6.5.1/function/mod.ts";
-import { v } from "https://deno.land/x/denops_std@v6.5.1/variable/mod.ts";
+import type { Denops } from "@denops/std";
+import { setreg } from "@denops/std/function";
+import { v } from "@denops/std/variable";
 
 /**
  * Yank text to the register.

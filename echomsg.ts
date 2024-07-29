@@ -1,5 +1,5 @@
-import type { Denops } from "https://deno.land/x/denops_std@v6.5.1/mod.ts";
-import { batch } from "https://deno.land/x/denops_std@v6.5.1/batch/batch.ts";
+import type { Denops } from "@denops/std";
+import { batch } from "@denops/std/batch";
 
 export async function echomsg(denops: Denops, msg: string, highlight?: string) {
   await batch(denops, async (denops) => {
