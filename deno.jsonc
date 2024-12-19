@@ -1,12 +1,13 @@
 {
   "name": "@kyoh86/denops-util",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A set of denops utils just for me",
   "exports": {
     "./command": "./command.ts",
     "./echomsg": "./echomsg.ts",
     "./echomsg_stream": "./echomsg_stream.ts",
     "./put": "./put.ts",
+    "./map": "./map.ts",
     "./yank": "./yank.ts"
   },
   "tasks": {
