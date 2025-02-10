@@ -11,13 +11,11 @@
     "./yank": "./yank.ts"
   },
   "tasks": {
-    "doc:clear": "rm -rf ./docs",
-    "doc:generate": "deno doc --html --name=denops-util --unstable ./**/*.ts",
-    "doc:serve": "python -m http.server -b 0.0.0.0 -d ./docs 8000",
-    "doc": "deno task doc:clear && deno task doc:generate && deno task doc:serve",
-    "test": "deno test --allow-env=DENOPS_TEST_CONNECT_TIMEOUT,DENOPS_TEST_DENOPS_PATH,DENOPS_TEST_VERBOSE,DENOPS_TEST_VIM_EXECUTABLE,DENOPS_TEST_NVIM_EXECUTABLE --allow-run=vim,nvim,echo,bash --allow-net=127.0.0.1:0 --allow-read",
+    "update": "deno run --allow-env --allow-read --allow-write --allow-net --allow-run=git,deno jsr:@molt/cli --write ./**/*.ts",
+    "fmt": "deno fmt",
     "check": "deno check ./**/*.ts",
-    "lint": "deno lint ./**/*.ts"
+    "lint": "deno lint",
+    "test": "deno test --check --permit-no-files --allow-env=DENOPS_TEST_CONNECT_TIMEOUT,DENOPS_TEST_DENOPS_PATH,DENOPS_TEST_VERBOSE,DENOPS_TEST_VIM_EXECUTABLE,DENOPS_TEST_NVIM_EXECUTABLE --allow-run=vim,nvim,echo,bash --allow-net=127.0.0.1:0 --allow-read"
   },
   "imports": {
     "@denops/std": "jsr:@denops/std@^7.0.0",
