@@ -1,6 +1,6 @@
 {
   "name": "@kyoh86/denops-util",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A set of denops utils just for me",
   "exports": {
     "./command": "./command.ts",
