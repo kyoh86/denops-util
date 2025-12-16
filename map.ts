@@ -1,7 +1,7 @@
-import * as fn from "jsr:@denops/std@~7.6.0/function";
-import * as mapping from "jsr:@denops/std@~7.6.0/mapping";
-import type { MapOptions } from "jsr:@denops/std@7/mapping";
-import type { Denops } from "jsr:@denops/std@~7.6.0";
+import * as fn from "@denops/std/function";
+import * as mapping from "@denops/std/mapping";
+import type { MapOptions } from "@denops/std/mapping";
+import type { Denops } from "@denops/std";
 
 /**
  * Make a mapping to dispatch a denops method call.
