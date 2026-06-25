@@ -9,6 +9,7 @@
     "./echomsg_stream": "./echomsg_stream.ts",
     "./put": "./put.ts",
     "./map": "./map.ts",
+    "./open": "./open.ts",
     "./yank": "./yank.ts"
   },
   "fmt": { "include": ["./**/*.ts", "deno.jsonc"] },
